@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Fire Safety App</h1>
+        </header>
+        <form class="location-form">
+            <label>enter location</label>
+            <input type="text" name="search-location" id="js-search-location" required placeholder="Portland, OR">            
+            <label>search radius</label>
+            <input type="number" name="search-radius" id="js-search-radius" value="25">
+            <button type="submit">Submit</button>
+        </form>
+        <div class="new-user hidden">
+            <iframe width="300" height="600" frameborder="0" scrolling="yes"
+             allowfullscreen src="https://arcg.is/q0K0b"></iframe>
+        </div>
+
+        <div id="js-dynamic-container" class="hidden">
+                <h4>This should be hidden</h4>
+        </div>
+    </main>
+</body>
+
+<script src="app.js"></script>
+</html>
