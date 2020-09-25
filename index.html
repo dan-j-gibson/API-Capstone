@@ -13,21 +13,23 @@
         </header>
         <form class="location-form">
             <label>enter location</label>
-            <input type="text" name="search-location" id="js-search-location" required placeholder="Portland, OR">            
+            <input type="text" name="search-location" id="js-search-location" value='portland or' required placeholder="Portland, OR">            
             <label>search radius</label>
-            <input type="number" name="search-radius" id="js-search-radius" value="25">
+            <input type="number" name="search-radius" id="js-search-radius" value="50">
             <button type="submit">Submit</button>
         </form>
         <!-- <div class="new-user hidden">
             <iframe width="600" height="600" frameborder="0" scrolling="yes"
              allowfullscreen src="https://arcg.is/q0K0b"></iframe>
         </div> -->
-
+<div id="results">
+<p></p>
+</div>
         <div id="js-dynamic-container" class="hidden">
                 <!-- <h4>This should be hidden</h4> -->
         </div>
     </main>
-    
+
 <script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous"></script>
 <script src="app.js"></script>
 </body>
