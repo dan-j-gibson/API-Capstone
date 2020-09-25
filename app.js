@@ -47,10 +47,10 @@ function convertAddress(addressInput) {
             const finalFireUrl = fireUrl + '&' + queryString
                     console.log(finalFireUrl) 
                     fetch(finalFireUrl)
-                    .then(responseJson => {
-                        if (responseJson.ok) {
-                            console.log(responseJson)
-                        return response.json()
+                    .then(fireResponseJson => {
+                        if (fireResponseJson.ok) {
+                            console.log(fireResponseJson)
+                        return fireResponseJson.json()
                         }
                         throw Error(`looks like there was an issue: ${response.statusText}`);
                     })
@@ -63,33 +63,6 @@ function convertAddress(addressInput) {
       return alert(`${err.message}`);
     });   
 }
-        // function getFiresList(coordinates,distance) {
-        //         const params = {
-        //             lat: coordinates[1],
-        //             lon: coordinates[1],
-        //             radius: distance
-        //         }
-        //         const queryString = fireFormatQueryParams(params)
-        //         const finalFireUrl = fireUrl + '&' + queryString
-
-        //         console.log(finalFireUrl)
-        // }
-
-        //         fetch(finalFireUrl)
-        //         .then(response => {
-        //           if (response.ok) {
-        //             return response.json();
-        //           }
-        //           throw Error(`looks like there was an issue: ${response.statusText}`);
-        //         })
-        //         // .then(responseJson => displayResults(responseJson))
-        //         .catch(err => {
-        //           return alert(`${err.message}`);
-        //         });
-        // }
-
-
-
 
 // displays list of fire locations ordered by distance
 // function displayResults(responseJson) {}
