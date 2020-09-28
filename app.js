@@ -8,15 +8,25 @@ const geoUrl ='https://us1.locationiq.com/v1/search.php?key=' + geoApiKey + '&fo
 const fireUrl ='https://api.breezometer.com/fires/v1/current-conditions?key=' + fireApiKey;
 
 
-
-
-// function assignCoordinates(geoResponseJson) {
-//     console.log(geoResponseJson)
-//     const coordinates = [geoResponseJson[0].lon, geoResponseJson[0].lat]
-//     // logs the first instance of lon and lat of location search
-//        console.log(coordinates);
-       
-//     }
+function displayResults (fireResponseJson){
+    // console.log(geoResponseJson);
+    console.log(fireResponseJson)
+    $('#results').removeClass('hidden');
+      $('#results-list').empty();
+      $('#results-list').append(`<h2>There is a total of ${fireResponseJson.data.fires.length} fires within ${$('#js-search-radius').val()}
+       km of ${$('#js-search-location').val().toUpperCase()}</h2>`)
+      for(let i = 0; i < fireResponseJson.data.fires.length; i++){
+        $('#results-list').append(
+                `<li>
+                    <h3>${fireResponseJson.data.fires[i].details.fire_name}</h3>
+                    <h4>${fireResponseJson.data.fires[i].details.fire_type}</h4>
+                    <p>${fireResponseJson.data.fires[i].details.fire_cause}</p>
+                    <p>Distance: ${fireResponseJson.data.fires[i].position.distance.value} km</p>
+                    <p>Size: ${fireResponseJson.data.fires[i].details.size.value} m2</p>
+                </li>`
+                );
+            }
+}
 
 // converts users location search to lat/lon format (geocoding)
 function convertAddress(addressInput) {
@@ -33,28 +43,28 @@ function convertAddress(addressInput) {
     })
     .then(
         function assignCoordinates(geoResponseJson) {
-            console.log(geoResponseJson)
+            // console.log(geoResponseJson)
             const coordinates = [geoResponseJson[0].lon, geoResponseJson[0].lat]
             const distance = $('#js-search-radius').val();
             console.log(coordinates);
             console.log(distance)
             const params = {
-                    lat: coordinates[1],
-                    lon: coordinates[0],
-                    radius: distance
-                }
+                lat: coordinates[1],
+                lon: coordinates[0],
+                radius: distance
+            }
             const queryString = fireFormatQueryParams(params)
             const finalFireUrl = fireUrl + '&' + queryString
                     console.log(finalFireUrl) 
                     fetch(finalFireUrl)
                     .then(fireResponseJson => {
                         if (fireResponseJson.ok) {
-                            console.log(fireResponseJson)
+                            // console.log(fireResponseJson)
                         return fireResponseJson.json()
                         }
                         throw Error(`looks like there was an issue: ${response.statusText}`);
                     })
-                    // .then(responseJson => displayResults(responseJson))
+                    .then(fireResponseJson => displayResults(fireResponseJson))
                     .catch(err => {
                         return alert(`${err.message}`);
                     });
@@ -64,9 +74,6 @@ function convertAddress(addressInput) {
     });   
 }
 
-// displays list of fire locations ordered by distance
-// function displayResults(responseJson) {}
-
 // builds parameters for fire API
 function fireFormatQueryParams(params) {
     const queryItems = Object.keys(params)
@@ -74,52 +81,14 @@ function fireFormatQueryParams(params) {
     return queryItems.join('&');
   }
 
-function createParams(coordinates,) {
-    const params = {
-                    lat: coordinates[0],
-                    lon: coordinates[1],
-                    radius: distance
-                }
-}
-
 // takes converted location input and radius and returns list of fires and their information
-// function getFiresList(location,radius) {
-// console.log(location);
-// const params = {
-//     lon: jsonResponse.lon,
-//     lat: jsonRespone.lat
-// }
-
-//     fetch()
-//     .then(response => {
-//       if (response.ok) {
-//         displayResults(responseJson)    
-//         return response.json();
-//       }
-//       throw Error(`looks like there was an issue: ${response.statusText}`);
-//     })
-//     .then(responseJson => displayResults(responseJson)
-//     )
-//     .catch(err => {
-//       return alert(`${err.message}`);
-//     });   
-// }
-
 
 // pulls user's inputs and sends them to API functions
 function watchForm() {
     $('.location-form').submit(event => {
       event.preventDefault();
       const searchLocation = $('#js-search-location').val();
-    //   const searchRadius  = $('#js-search-radius').val();
-    //   const searchCoordinates = convertAddress(searchLocation)
-
-    //   console.log(searchLocation);
-    //   console.log(searchRadius);
       convertAddress(searchLocation);
-
-    //   getFiresList(searchCoordinates,searchRadius)
-    //   getFiresList(searchLocation, searchRadius);
     });
   }
 

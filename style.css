@@ -1,3 +1,25 @@
-/* .hidden {
+body {
+    background-color: #e2a636;
+
+}
+
+main {
+    margin: 0 auto;
+    width: fit-content;
+  }
+
+li {
+    background-color: #e7e7e7;
+    border-color: #e2c336;
+    border-style:groove ;
+    border-width: 3px;
+    border-radius: 2%;
+    text-align: center;
+    list-style: none;
+    /* margin-left: 10px; */
+    padding-left: 5px;
+  }
+
+.hidden {
     display: none;
-} */
+}
