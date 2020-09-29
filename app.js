@@ -10,7 +10,7 @@ const fireUrl ='https://api.breezometer.com/fires/v1/current-conditions?key=' + 
 
 function displayResults (fireResponseJson){
     // console.log(geoResponseJson);
-    console.log(fireResponseJson)
+    // console.log(fireResponseJson)
     $('#results').removeClass('hidden');
       $('#results-list').empty();
       $('#results-list').append(`<h2>There is a total of ${fireResponseJson.data.fires.length} fires within ${$('#js-search-radius').val()}
@@ -33,7 +33,7 @@ function convertAddress(addressInput) {
 
     const lonLatUrl = geoUrl + addressInput;
 // display new URL to fetch from API
-    console.log(lonLatUrl);
+    // console.log(lonLatUrl);
     fetch(lonLatUrl)
     .then(response => {
       if (response.ok) {
@@ -46,8 +46,8 @@ function convertAddress(addressInput) {
             // console.log(geoResponseJson)
             const coordinates = [geoResponseJson[0].lon, geoResponseJson[0].lat]
             const distance = $('#js-search-radius').val();
-            console.log(coordinates);
-            console.log(distance)
+            // console.log(coordinates);
+            // console.log(distance)
             const params = {
                 lat: coordinates[1],
                 lon: coordinates[0],
@@ -55,7 +55,7 @@ function convertAddress(addressInput) {
             }
             const queryString = fireFormatQueryParams(params)
             const finalFireUrl = fireUrl + '&' + queryString
-                    console.log(finalFireUrl) 
+                    // console.log(finalFireUrl) 
                     fetch(finalFireUrl)
                     .then(fireResponseJson => {
                         if (fireResponseJson.ok) {
