@@ -7,11 +7,13 @@ const geoApiKey ='b0f870fa197b0d'
 const geoUrl ='https://us1.locationiq.com/v1/search.php?key=' + geoApiKey + '&format=json&q=';
 const fireUrl ='https://api.breezometer.com/fires/v1/current-conditions?key=' + fireApiKey;
 
+// clears results list and displays data in column to user
 function displayResults (fireResponseJson){
     console.log(fireResponseJson)
     $('#results').removeClass('hidden');
       $('#results-list').empty();
-          if (fireResponseJson.data.fires.length !== 1  )
+// condition that displays the proper text for a single or multiple fires in order to read legibly
+          if (fireResponseJson.data.fires.length !== 1)
           { $('#results-list').append(
               `<h2>There is a total of ${fireResponseJson.data.fires.length} fires within ${$('#js-search-radius').val()}
             kilometers of ${$('#js-search-location').val().toUpperCase()}</h2>`)}

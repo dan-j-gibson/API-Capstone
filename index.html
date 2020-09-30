@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/jpg" href="images/fire-favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="images/fire-favicon.jpg"/>
     <title>Fire Saftey List - API Capstone</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
         <div id="header-search-container">
-                <h1>Fire Safety App</h1>
-            
+            <header><h1>Wildfire Locator</h1>
+            <p><b>Search any location in the United States and find out information on nearby fires to keep you and your family safe. Max radius of 100km.</b></p>
+        </header>        
             <form class="location-form">
-                <label>enter location</label>
-                <input type="text" name="search-location" id="js-search-location" value='portland or' required placeholder="Portland, OR">            
+                <label>Search Location</label>
+                <input type="text" name="search-location" id="js-search-location" placeholder="Portland, OR" required>            
                 <br>
-                <label>search radius</label>
-                <input type="number" name="search-radius" id="js-search-radius" value="50">
+                <label>Search Radius (km)</label>
+                <input type="number" name="search-radius" id="js-search-radius" value="50" required>
                 <button type="submit">Submit</button>
             </form>
         </div>
