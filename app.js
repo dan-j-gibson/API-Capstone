@@ -7,20 +7,23 @@ const geoApiKey ='b0f870fa197b0d'
 const geoUrl ='https://us1.locationiq.com/v1/search.php?key=' + geoApiKey + '&format=json&q=';
 const fireUrl ='https://api.breezometer.com/fires/v1/current-conditions?key=' + fireApiKey;
 
-
 function displayResults (fireResponseJson){
-    // console.log(geoResponseJson);
-    // console.log(fireResponseJson)
+    console.log(fireResponseJson)
     $('#results').removeClass('hidden');
       $('#results-list').empty();
-      $('#results-list').append(`<h2>There is a total of ${fireResponseJson.data.fires.length} fires within ${$('#js-search-radius').val()}
-       km of ${$('#js-search-location').val().toUpperCase()}</h2>`)
+          if (fireResponseJson.data.fires.length !== 1  )
+          { $('#results-list').append(
+              `<h2>There is a total of ${fireResponseJson.data.fires.length} fires within ${$('#js-search-radius').val()}
+            kilometers of ${$('#js-search-location').val().toUpperCase()}</h2>`)}
+       else { $('#results-list').append(
+           `<h2>There is only ${fireResponseJson.data.fires.length} fire within ${$('#js-search-radius').val()}
+            kilometers of ${$('#js-search-location').val().toUpperCase()}</h2>`)}
       for(let i = 0; i < fireResponseJson.data.fires.length; i++){
         $('#results-list').append(
-                `<li>
+                `<li class="item-double">
                     <h3>${fireResponseJson.data.fires[i].details.fire_name}</h3>
-                    <h4>${fireResponseJson.data.fires[i].details.fire_type}</h4>
-                    <p>${fireResponseJson.data.fires[i].details.fire_cause}</p>
+                    <h4>Type: ${fireResponseJson.data.fires[i].details.fire_type}</h4>
+                    <p>Cause of fire: ${fireResponseJson.data.fires[i].details.fire_cause}</p>
                     <p>Distance: ${fireResponseJson.data.fires[i].position.distance.value} km</p>
                     <p>Size: ${fireResponseJson.data.fires[i].details.size.value} m2</p>
                 </li>`
@@ -43,7 +46,7 @@ function convertAddress(addressInput) {
     })
     .then(
         function assignCoordinates(geoResponseJson) {
-            // console.log(geoResponseJson)
+            console.log(geoResponseJson)
             const coordinates = [geoResponseJson[0].lon, geoResponseJson[0].lat]
             const distance = $('#js-search-radius').val();
             // console.log(coordinates);

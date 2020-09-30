@@ -8,22 +8,21 @@
 </head>
 <body>
     <main>
-        <header>
-            <h1>Fire Safety App</h1>
-        </header>
-        <form class="location-form">
-            <label>enter location</label>
-            <input type="text" name="search-location" id="js-search-location" value='portland or' required placeholder="Portland, OR">            
-            <label>search radius</label>
-            <input type="number" name="search-radius" id="js-search-radius" value="50">
-            <button type="submit">Submit</button>
-        </form>
-        <!-- <div class="new-user hidden">
-            <iframe width="600" height="600" frameborder="0" scrolling="yes"
-             allowfullscreen src="https://arcg.is/q0K0b"></iframe>
-        </div> -->
-<div id="results" class="hidden">
+        <div id="header-search-container">
+                <h1>Fire Safety App</h1>
+            
+            <form class="location-form">
+                <label>enter location</label>
+                <input type="text" name="search-location" id="js-search-location" value='portland or' required placeholder="Portland, OR">            
+                <br>
+                <label>search radius</label>
+                <input type="number" name="search-radius" id="js-search-radius" value="50">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+<div id="results">
     <div id="results-list">
+        <iframe frameborder="0" scrolling="no"  src="https://arcg.is/1aT5SW"></iframe>
     <ul></ul>
     </div>
 </div>
