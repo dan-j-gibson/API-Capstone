@@ -4,7 +4,7 @@
 ## Screenshots
 
 Welcome page
-![welcome-page] images/welcom-page.png
+![welcome-page](images/welcom-page.png)
 
 Results Page
 
