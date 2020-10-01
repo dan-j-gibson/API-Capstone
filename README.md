@@ -1,5 +1,5 @@
 # FireSafety.io 
-[site link](https://dan-j-gibson.github.io/Fire-Safety-Lookup/)
+![site link](https://dan-j-gibson.github.io/Fire-Safety-Lookup/)
 
 ## Screenshots
 [welcome-page] 
