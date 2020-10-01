@@ -9,20 +9,19 @@ const fireUrl ='https://api.breezometer.com/fires/v1/current-conditions?key=' + 
 
 // clears results list and displays data in column to user
 function displayResults (fireResponseJson){
-    console.log(fireResponseJson)
     $('#results').removeClass('hidden');
       $('#results-list').empty();
 // condition that displays the proper text for a single or multiple fires in order to read legibly
           if (fireResponseJson.data.fires.length !== 1)
           { $('#results-list').append(
-              `<h2>There is a total of ${fireResponseJson.data.fires.length} fires within ${$('#js-search-radius').val()}
-            kilometers of ${$('#js-search-location').val().toUpperCase()}</h2>`)}
+              `<h1>There is a total of <span id='js-fire-number'>${fireResponseJson.data.fires.length}</span> fires within <span id='js-fire-number'>${$('#js-search-radius').val()}</span>
+            kilometers of ${$('#js-search-location').val()}</h1>`)}
        else { $('#results-list').append(
-           `<h2>There is only ${fireResponseJson.data.fires.length} fire within ${$('#js-search-radius').val()}
-            kilometers of ${$('#js-search-location').val().toUpperCase()}</h2>`)}
+           `<h1>There is only <span id='js-fire-number'>${fireResponseJson.data.fires.length}</span> fire within <span id='js-fire-number'>${$('#js-search-radius').val()}</span>s
+            kilometers of ${$('#js-search-location').val()}</h1>`)}
       for(let i = 0; i < fireResponseJson.data.fires.length; i++){
         $('#results-list').append(
-                `<li class="item-double">
+                `<li>
                     <h3>${fireResponseJson.data.fires[i].details.fire_name}</h3>
                     <h4>Type: ${fireResponseJson.data.fires[i].details.fire_type}</h4>
                     <p>Cause of fire: ${fireResponseJson.data.fires[i].details.fire_cause}</p>
@@ -38,7 +37,6 @@ function convertAddress(addressInput) {
 
     const lonLatUrl = geoUrl + addressInput;
 // display new URL to fetch from API
-    // console.log(lonLatUrl);
     fetch(lonLatUrl)
     .then(response => {
       if (response.ok) {
@@ -48,11 +46,8 @@ function convertAddress(addressInput) {
     })
     .then(
         function assignCoordinates(geoResponseJson) {
-            console.log(geoResponseJson)
             const coordinates = [geoResponseJson[0].lon, geoResponseJson[0].lat]
             const distance = $('#js-search-radius').val();
-            // console.log(coordinates);
-            // console.log(distance)
             const params = {
                 lat: coordinates[1],
                 lon: coordinates[0],
@@ -60,11 +55,9 @@ function convertAddress(addressInput) {
             }
             const queryString = fireFormatQueryParams(params)
             const finalFireUrl = fireUrl + '&' + queryString
-                    // console.log(finalFireUrl) 
                     fetch(finalFireUrl)
                     .then(fireResponseJson => {
                         if (fireResponseJson.ok) {
-                            // console.log(fireResponseJson)
                         return fireResponseJson.json()
                         }
                         throw Error(`looks like there was an issue: ${response.statusText}`);
@@ -79,14 +72,13 @@ function convertAddress(addressInput) {
     });   
 }
 
-// builds parameters for fire API
+// builds URL parameters for fire API
 function fireFormatQueryParams(params) {
     const queryItems = Object.keys(params)
       .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItems.join('&');
   }
 
-// takes converted location input and radius and returns list of fires and their information
 
 // pulls user's inputs and sends them to API functions
 function watchForm() {

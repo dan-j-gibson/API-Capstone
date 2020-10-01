@@ -1,49 +1,47 @@
 * {
-    /* max-width: 90%; */
     margin: 5px auto;
-    /* box-sizing: border-box; */
     text-align: center;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 1px 1px #6b6666;
 }
 
 body {
     background: #fbe13f;
     background: radial-gradient(circle, #fbe13f 0%, #ee8d28 100%);
-    /* border-style: groove;
-    border-color: #000000; */
     width: 95%
 }
 
-main {
-    /* margin: 0 auto; */
-    /* width: fit-content; */
-    /* border-style: groove;
-    border-color: #ff0202; */
-  }
-
-header p, label, button, h2{
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    margin-bottom: 3px;
+header h1 {
+    text-shadow: 2px 2px #ff0000;
 }
 
 input {
-font-size: large;
+    color:black;
+    text-shadow: 0 0 #00000000;
+    font-size: large;
+
+}
+
+#js-fire-number {
+    color: rgb(250, 1, 1);
+    text-shadow: 2px 2px #f8e802;
 }
 
 #header-search-container h1 {
     font-size: 36px;
     font-family: 'Pacifico', Courier;
+    border-width: 2px;
+
 }
 
 form, button{
-    /* width: 50%; */
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
     width: fit-content;
 }
 
 button {
-    /* width: fit-content; */
     background-color: #178b21;
     border-radius: 15%;
 }
@@ -51,36 +49,20 @@ button {
 form {
     width: 50%;
 }
-  
-#header-search-container {
-    /* border-style: groove;
-    border-color: #7605d3; */
-    border-width: 2px;
-}
 
 #results {
-    /* border-style: groove;
-    border-color: #05c215; */
+    margin-top: 25px;
 }
 
-#results-list {
-    /* border-style: groove;
-    border-color: #f5f2f2; */
-    /* display: flex; */
-    /* flex: column; */
-}
 
 iframe {
     height: 700px;
-    /* border-style: groove;
-    border-color: #e407b4; */
-    width:90%;;
-    
+    width:90%;
 }
 
 li {
     
-    background-color: #e7e7e7;
+    background-color: #178b21;
     border-color: #e2c336;
     border-style:groove ;
     border-width: 3px;
@@ -89,10 +71,10 @@ li {
     padding-left: 5px;
   }
 
+  /* remvoed in javascript */
 .hidden {
     display: none;
 }
-
 
 button:active {background-color: #ff0000;}
 
@@ -100,13 +82,9 @@ button:active {background-color: #ff0000;}
 /* Desktop Layout */
 
 @media all and (min-width: 700px){
-    * {
+    body {
         width: 90%
     }
-
-main {
-    width: 100%
-}
 
 #header-search-container h1 {
     font-size: 48px;
@@ -115,4 +93,14 @@ main {
 
 iframe {
     width: 80%
+}
+
+/* Flex wrap item list to display on 2x? columns */
+#results-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+li {
+    width: 45%
 }

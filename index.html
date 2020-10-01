@@ -12,28 +12,24 @@
     <main>
         <div id="header-search-container">
             <header><h1>Wildfire Locator</h1>
-            <p><b>Search any location in the United States and find out information on nearby fires to keep you and your family safe. Max radius of 100km.</b></p>
-        </header>        
+                <h3><b>Search any location in the United States and find out information on nearby fires to keep you and your family safe.<br>
+                    Max radius = 100km</b></h3>
+            </header>        
             <form class="location-form">
-                <label>Search Location</label>
+                    <label>Search Location</label>
                 <input type="text" name="search-location" id="js-search-location" placeholder="Portland, OR" required>            
-                <br>
-                <label>Search Radius (km)</label>
+                        <br>
+                    <label>Search Radius (km)</label>
                 <input type="number" name="search-radius" id="js-search-radius" value="50" required>
                 <button type="submit">Submit</button>
             </form>
         </div>
-<div id="results">
-    <div id="results-list">
-        <iframe frameborder="0" scrolling="no"  src="https://arcg.is/1aT5SW"></iframe>
-    <ul></ul>
-    </div>
-</div>
-        <div id="js-dynamic-container" class="hidden">
-                <!-- <h4>This should be hidden</h4> -->
-        </div>
+            <div id="results">
+                <div id="results-list">
+                    <iframe frameborder="0" scrolling="no"  src="https://arcg.is/1aT5SW"></iframe>
+                </div>
+            </div>
     </main>
-
 <script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous"></script>
 <script src="app.js"></script>
 </body>
