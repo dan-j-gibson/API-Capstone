@@ -7,6 +7,7 @@ const geoApiKey ='b0f870fa197b0d'
 const geoUrl ='https://us1.locationiq.com/v1/search.php?key=' + geoApiKey + '&format=json&q=';
 const fireUrl ='https://api.breezometer.com/fires/v1/current-conditions?key=' + fireApiKey;
 
+
 // clears results list and displays data in column to user
 function displayResults (fireResponseJson){
     $('#results').removeClass('hidden');
@@ -30,11 +31,10 @@ function displayResults (fireResponseJson){
                 </li>`
                 );
             }
-}
+    }
 
 // converts users location search to lat/lon format (geocoding)
 function convertAddress(addressInput) {
-
     const lonLatUrl = geoUrl + addressInput;
 // display new URL to fetch from API
     fetch(lonLatUrl)
@@ -52,7 +52,7 @@ function convertAddress(addressInput) {
                 lat: coordinates[1],
                 lon: coordinates[0],
                 radius: distance
-            }
+                }
             const queryString = fireFormatQueryParams(params)
             const finalFireUrl = fireUrl + '&' + queryString
                     fetch(finalFireUrl)
